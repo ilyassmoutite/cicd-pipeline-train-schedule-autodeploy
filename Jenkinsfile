@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "ilyassmt/docker-test"
-    registryCredential = ‘dockerhub’
+    registryCredential = ‘DockerHub’
    }
   agent any
   stages {
