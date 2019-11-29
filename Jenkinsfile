@@ -5,11 +5,7 @@ pipeline {
    }
   agent any
   stages {
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/ilyassmoutite/cicd-pipeline-train-schedule-autodeploy.git'
-      }
-    }
+   
     stage('Building image') {
       steps{
         script {
