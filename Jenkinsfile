@@ -1,6 +1,7 @@
 pipeline {
   environment {
     registry = "ilyassmt/docker-test"
+    registryCredential = ‘dockerhub’
    }
   agent any
   stages {
@@ -12,15 +13,23 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          docker.build registry + ":$BUILD_NUMBER"
+          image=docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
     stage('Running image container') {
         steps{
-            sh "docker run -p 8000:8080 -d ilyassmt/docker-test:$BUILD_NUMBER"
+            sh "docker run -p 8000:8080 -d $registry:$BUILD_NUMBER"
         }
     }    
+    
+    stage('Deploy Image') {
+       steps{    
+         script {
+           docker.withRegistry( '', registryCredential ) { image.push() }
+         }
+       }
+    }
         
   }
 }
