@@ -13,15 +13,15 @@ pipeline {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
-                        sh "ssh -oStrictHostKeyChecking=no ilyass@192.168.1.113"
-                        sh "  ssh   ilyass@192.168.1.113 \"docker pull ilyassmt/hello\""
+                        sh "ssh  ilyass@192.168.1.116"
+                        sh "  ssh   ilyass@192.168.1.116 \"docker pull ilyassmt/hello\""
                         try {
-                            sh "  ssh  ilyass@192.168.1.113 \"docker stop ilyassmt/hello\""
-                            sh "   ssh   ilyass@192.168.1.113 \"docker rmi -f ilyassmt/hello\""
+                            sh "  ssh  ilyass@192.168.1.116 \"docker stop ilyassmt/hello\""
+                            sh "   ssh   ilyass@192.168.1.116 \"docker rmi -f ilyassmt/hello\""
                         } catch (err) {
                             echo: 'caught error: $err'
                         }
-                        sh " ssh  ilyass@192.168.1.113 \"docker run  ilyassmt/hello \""
+                        sh " ssh  ilyass@192.168.1.116 \"docker run  ilyassmt/hello \""
                     }
                 }
             }
