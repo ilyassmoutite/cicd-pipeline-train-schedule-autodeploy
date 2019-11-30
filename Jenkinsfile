@@ -11,8 +11,7 @@ pipeline {
         stage('DeployToProduction') {
          
             steps {
-                input 'Deploy to Production?'
-                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                  withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         sh "ssh ilyass@192.168.1.113"
                         sh "  ssh   ilyass@192.168.1.113 \"docker pull ilyassmt/hello\""
