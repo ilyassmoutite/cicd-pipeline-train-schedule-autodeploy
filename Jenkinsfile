@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             when {
-                branch 'production'
+                branch 'master'
             }
             steps {
                 script {
@@ -27,7 +27,7 @@ pipeline {
  
         stage('DeployToProduction') {
             when {
-                branch 'production'
+                branch 'master'
             }
             steps {
                 input 'Deploy to Production?'
