@@ -5,12 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = "ilyassmt/hello"
     }
     stages {
-        stage('Build') {
-            steps {
-                echo 'Running build automation'
-                sh './gradlew build --no-daemon'
-             }
-        }
+     
         stage('Build Docker Image') {
             when {
                 branch 'master'
