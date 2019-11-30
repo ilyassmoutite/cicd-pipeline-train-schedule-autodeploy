@@ -15,7 +15,7 @@ pipeline {
                 milestone(1)
                 withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
-                        sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$prod_ip \"docker pull ilyassmt/hello\""
+                        sh "  ssh   $USERNAME@$prod_ip \"docker pull ilyassmt/hello\""
                         try {
                             sh "  ssh   $USERNAME@$prod_ip \"docker stop ilyassmt/hello\""
                             sh "   ssh   $USERNAME@$prod_ip \"docker rmi -f ilyassmt/hello\""
