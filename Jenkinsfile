@@ -7,9 +7,7 @@ pipeline {
     stages {
      
         stage('Build Docker Image') {
-            when {
-                branch 'master'
-            }
+          
             steps {
                 script {
                     app = docker.build(DOCKER_IMAGE_NAME)
@@ -21,9 +19,7 @@ pipeline {
         }
  
         stage('DeployToProduction') {
-            when {
-                branch 'master'
-            }
+         
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
